@@ -21,13 +21,13 @@ function divide(a, b) {
 
 function operate(firstNumber, secondNumber, operator) {
     if (operator == '+') {
-        add(firstNumber, secondNumber);
+        return add(firstNumber, secondNumber);
     } else if (operator == '-') {
-        subtract(firstNumber, secondNumber);
+        return subtract(firstNumber, secondNumber);
     } else if (operator == '*') {
-        multiply(firstNumber, secondNumber);
+        return multiply(firstNumber, secondNumber);
     } else if (operator == '/') {
-        divide(firstNumber, secondNumber);
+        return divide(firstNumber, secondNumber);
     }
 }
 
@@ -54,6 +54,9 @@ for (let i = 0; i < buttons.length; i++) {
             firstNumber = null;
             secondNumber = null;
             operation = null;
+            updateDisplay();
+        } else if (buttons[i].classList == 'equal') {
+            displayValue = operate(firstNumber, secondNumber, operation);
             updateDisplay();
         }
     })
