@@ -43,8 +43,19 @@ const buttons = document.querySelectorAll('button');
 
 for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', () => {
-        displayValue = displayValue + buttons[i].id;
-        updateDisplay();
+        if (buttons[i].classList == 'numeral') {
+            displayValue = displayValue + buttons[i].textContent;
+            firstNumber = displayValue;
+            updateDisplay();
+        } else if (buttons[i].classList == 'symbol') {
+            operation = buttons[i].textContent;
+        } else if (buttons[i].classList == 'clear') {
+            displayValue = '0';
+            firstNumber = null;
+            secondNumber = null;
+            operation = null;
+            updateDisplay();
+        }
     })
 }
 
