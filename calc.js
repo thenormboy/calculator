@@ -30,9 +30,16 @@ function operate(firstNumber, secondNumber, operator) {
     }
 }
 
-const buttons = document.querySelectorAll('.buttons');
+const buttons = document.querySelectorAll('button');
 const display = document.querySelector('.display');
 
 function displayNumbers() {
     
+    buttons.forEach((numButton) => {
+        numButton.addEventListener('click', () => {
+            display.textContent = numButton.id;
+        });
+    });
 }
+
+displayNumbers();
