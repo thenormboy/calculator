@@ -1,21 +1,22 @@
-let firstNumberDisplay;
-let secondNumberDisplay;
-let operatorDisplay;
+let firstNumber = null;
+let secondNumber = null;
+let operation = null;
+let displayValue = '0';
 
-function add(firstNumber, secondNumber) {
-    return firstNumber + secondNumber;
+function add(a, b) {
+    return a + b;
 }
 
-function subtract(firstNumber, secondNumber) {
-    return firstNumber - secondNumber;
+function subtract(a, b) {
+    return a - b;
 }
 
-function multiply(firstNumber, secondNumber) {
-    return firstNumber * secondNumber;
+function multiply(a, b) {
+    return a * b;
 }
 
-function divide(firstNumber, secondNumber) {
-    firstNumber / secondNumber;
+function divide(a, b) {
+    return a / b;
 }
 
 function operate(firstNumber, secondNumber, operator) {
@@ -30,16 +31,20 @@ function operate(firstNumber, secondNumber, operator) {
     }
 }
 
-const buttons = document.querySelectorAll('button');
-const display = document.querySelector('.display');
-
-function displayNumbers() {
-    
-    buttons.forEach((numButton) => {
-        numButton.addEventListener('click', () => {
-            display.textContent = numButton.id;
-        });
-    });
+function updateDisplay (){
+    const display = document.querySelector('.display');
+    display.innerText = displayValue;
 }
 
-displayNumbers();
+updateDisplay();
+
+const buttons = document.querySelectorAll('button');
+
+
+for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', () => {
+        displayValue = displayValue + buttons[i].id;
+        updateDisplay();
+    })
+}
+
