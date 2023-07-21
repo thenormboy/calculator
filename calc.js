@@ -43,6 +43,10 @@ function clickClear() {
     operation = null;
 }
 
+function clickDelete() {
+    displayValue = displayValue.slice(0, displayValue.length - 1);
+}
+
 function clickDecimal() {
     if (!String(firstNumber).includes('.')) {
         displayValue = displayValue + '.';
@@ -108,6 +112,9 @@ for (let i = 0; i < buttons.length; i++) {
             updateDisplay();
         } else if (buttons[i].classList == 'decimal') {
             clickDecimal();
+            updateDisplay();
+        } else if (buttons[i].classList == 'delete') {
+            clickDelete();
             updateDisplay();
         }
     })
