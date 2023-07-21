@@ -42,12 +42,18 @@ function clickNumeral(index) {
     if (displayValue == '0') {
         displayValue = buttons[index].textContent;
     } else if (!(displayValue == '0')){
-        displayValue = displayValue + buttons[index].textContent;
+        if (operation !== null && firstNumber !== null && secondNumber == null) {
+            displayValue = buttons[index].textContent;
+            secondNumber = displayValue;
+        } else {
+            displayValue = displayValue + buttons[index].textContent;
+        }
     }
 }
 
-function clickOperator() {
-    
+function clickOperator(index) {
+    firstNumber = displayValue;
+    operation = buttons[index].textContent;
 }
 
 function updateDisplay (){
@@ -66,7 +72,7 @@ for (let i = 0; i < buttons.length; i++) {
             clickNumeral(i);
             updateDisplay();
         } else if (buttons[i].classList == 'symbol') {
-            operation = buttons[i].textContent;
+            clickOperator(i);
         } else if (buttons[i].classList == 'clear') {
             clickClear();
             updateDisplay();
