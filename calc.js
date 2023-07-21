@@ -16,6 +16,9 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
+    if (b == 0) {
+        return "no no no....";
+    }
     return Number(a) / Number(b);
 }
 
@@ -32,8 +35,12 @@ function operate(firstNumber, secondNumber, operator) {
 }
 
 function clickEqual() {
-    secondNumber = displayValue;
-    displayValue = operate(firstNumber, secondNumber, operation);
+    if (firstNumber == null || secondNumber == null || operation == null){
+        displayValue = displayValue;
+    } else {
+        secondNumber = displayValue;
+        displayValue = operate(firstNumber, secondNumber, operation);
+    }
 }
 
 function clickClear() {
@@ -119,6 +126,3 @@ for (let i = 0; i < buttons.length; i++) {
         }
     })
 }
-
-
-
