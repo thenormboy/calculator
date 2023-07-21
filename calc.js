@@ -8,15 +8,15 @@ function add(a, b) {
 }
 
 function subtract(a, b) {
-    return a - b;
+    return Number(a) - Number(b);
 }
 
 function multiply(a, b) {
-    return a * b;
+    return Number(a) * Number(b);
 }
 
 function divide(a, b) {
-    return a / b;
+    return Number(a) / Number(b);
 }
 
 function operate(firstNumber, secondNumber, operator) {
@@ -24,7 +24,7 @@ function operate(firstNumber, secondNumber, operator) {
         return add(firstNumber, secondNumber);
     } else if (operator == '-') {
         return subtract(firstNumber, secondNumber);
-    } else if (operator == '*') {
+    } else if (operator == 'x') {
         return multiply(firstNumber, secondNumber);
     } else if (operator == '/') {
         return divide(firstNumber, secondNumber);
@@ -43,11 +43,25 @@ function clickClear() {
     operation = null;
 }
 
+function clickDecimal() {
+    if (!String(firstNumber).includes('.')) {
+        displayValue = displayValue + '.';
+    } else if (!String(secondNumber).includes('.')) {
+        if (secondNumber == null) {
+        displayValue = '.';
+        } else {
+            displayValue = displayValue + '.';
+        }
+    }
+}
+
 function clickNumeral(index) {
     if (displayValue == '0') {
         displayValue = buttons[index].textContent;
-    } else if (!(displayValue == '0')){
-        if (operation !== null && firstNumber !== null && secondNumber == null) {
+    } else if (!(displayValue == '0')) {
+        if (displayValue == '.') {
+            displayValue = '.' + buttons[index].textContent;
+        } else if (operation !== null && firstNumber !== null && secondNumber == null) {
             displayValue = buttons[index].textContent;
             secondNumber = displayValue;
         } else {
@@ -83,6 +97,9 @@ for (let i = 0; i < buttons.length; i++) {
             updateDisplay();
         } else if (buttons[i].classList == 'equal') {
             clickEqual();
+            updateDisplay();
+        } else if (buttons[i].classList == 'decimal') {
+            clickDecimal();
             updateDisplay();
         }
     })
