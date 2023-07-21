@@ -48,7 +48,7 @@ function clickDecimal() {
         displayValue = displayValue + '.';
     } else if (!String(secondNumber).includes('.')) {
         if (secondNumber == null) {
-        displayValue = '.';
+            displayValue = '.';
         } else {
             displayValue = displayValue + '.';
         }
@@ -71,8 +71,16 @@ function clickNumeral(index) {
 }
 
 function clickOperator(index) {
-    firstNumber = displayValue;
-    operation = buttons[index].textContent;
+    if (operation == null) {
+        firstNumber = displayValue;
+        operation = buttons[index].textContent;
+    } else {
+        displayValue = operate(firstNumber, displayValue, operation);
+        updateDisplay();
+        firstNumber = displayValue;
+        operation = buttons[index].textContent;
+        secondNumber = null;
+    }
 }
 
 function updateDisplay (){
