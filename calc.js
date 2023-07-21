@@ -4,7 +4,7 @@ let operation = null;
 let displayValue = '0';
 
 function add(a, b) {
-    return a + b;
+    return Number(a) + Number(b);
 }
 
 function subtract(a, b) {
@@ -29,6 +29,11 @@ function operate(firstNumber, secondNumber, operator) {
     } else if (operator == '/') {
         return divide(firstNumber, secondNumber);
     }
+}
+
+function clickEqual() {
+    secondNumber = displayValue;
+    displayValue = operate(firstNumber, secondNumber, operation);
 }
 
 function clickClear() {
@@ -77,7 +82,7 @@ for (let i = 0; i < buttons.length; i++) {
             clickClear();
             updateDisplay();
         } else if (buttons[i].classList == 'equal') {
-            displayValue = operate(firstNumber, secondNumber, operation);
+            clickEqual();
             updateDisplay();
         }
     })
